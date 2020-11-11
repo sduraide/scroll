@@ -1,25 +1,28 @@
-import logo from './logo.svg';
+import React, { Component } from "react";
 import './App.css';
+import Scroll from './Scroll'
+const images = Array.from({ length: 50 }, (_, i) => {
+  let width = 300
+  let height = Math.floor(Math.random() * 300) + 200;
+  return {
+    url: `https://picsum.photos/200/300?random=${Math.floor(Math.random() * 10)}`,
+    width,
+    height,
+  }
+})
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      items: images
+    }
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  render() {
+    return (
+      <Scroll items={this.state.items}></Scroll>
+    );
+  }
 }
 
 export default App;
